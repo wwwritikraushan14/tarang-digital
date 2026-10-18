@@ -21,6 +21,23 @@ document.querySelectorAll(".card, .work-card, .step, .plan, .stat").forEach(el =
   io.observe(el);
 });
 
+// faq accordion
+document.querySelectorAll(".faq-item").forEach(item => {
+  const q = item.querySelector(".faq-q");
+  const a = item.querySelector(".faq-a");
+  q.addEventListener("click", () => {
+    const open = item.classList.contains("open");
+    document.querySelectorAll(".faq-item.open").forEach(o => {
+      o.classList.remove("open");
+      o.querySelector(".faq-a").style.maxHeight = null;
+    });
+    if (!open) {
+      item.classList.add("open");
+      a.style.maxHeight = a.scrollHeight + "px";
+    }
+  });
+});
+
 // nav shadow on scroll
 const nav = document.getElementById("nav");
 addEventListener("scroll", () => {
